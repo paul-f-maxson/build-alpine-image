@@ -1,2 +1,2 @@
-# build-debian-image
-An environment for building custom debian linux images. Designed to run containerized. 
+# build-alpine-image
+An environment for building custom alpine linux images. Designed to run containerized. 
