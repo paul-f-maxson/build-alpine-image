@@ -4,16 +4,23 @@
 ARG VARIANT="3.16"
 FROM mcr.microsoft.com/vscode/devcontainers/base:0-alpine-${VARIANT}
 
-# Copy the aports repo into the container
-ADD https://gitlab.alpinelinux.org/alpine/aports.git /aports
-
 # Install additional packages
 RUN apk update \
-    && apk add --no-cache \
-      # tools for building iso images
-      alpine-sdk build-base apk-tools alpine-conf busybox fakeroot syslinux xorriso squashfs-tools sudo \
-      # tools for efi
-      mtools dosfstools grub-efi 
+  && apk add --no-cache \
+  zip \
+  # tools for building iso images
+  alpine-sdk build-base apk-tools alpine-conf busybox fakeroot syslinux xorriso squashfs-tools sudo \
+  # tools for efi
+  mtools dosfstools grub-efi 
+
+WORKDIR /home/vscode
+
+# Copy the aports repo into the container
+ADD https://gitlab.alpinelinux.org/alpine/aports/-/archive/master/aports-master.zip ./
+
+RUN unzip aports-master
+
+WORKDIR /
 
 # Create signing keys
 RUN abuild-keygen \
