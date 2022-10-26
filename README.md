@@ -1,2 +1,2 @@
-# build-arch-image
-An environment for building custom arch linux images. Designed to run containerized. 
+# build-debian-image
+An environment for building custom debian linux images. Designed to run containerized. 
