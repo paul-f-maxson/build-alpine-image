@@ -18,7 +18,9 @@ WORKDIR /home/vscode
 # Copy the aports repo into the container
 ADD https://gitlab.alpinelinux.org/alpine/aports/-/archive/master/aports-master.zip ./
 
-RUN unzip aports-master
+RUN unzip aports-master \
+  && mv aports-master aports \
+  && rm aports-master.zip
 
 WORKDIR /
 
